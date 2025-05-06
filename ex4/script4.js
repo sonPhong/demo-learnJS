@@ -24,4 +24,6 @@ function checkMiss(arr1, arr2) {
 
 /// test tiếp hehe
 
+// test pull orther
+
 checkMiss(arr1, arr2);

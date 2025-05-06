@@ -20,4 +20,6 @@ function checkMiss(arr1, arr2) {
     console.log(arrCheck);
 }
 
+// test thử git
+
 checkMiss(arr1, arr2);

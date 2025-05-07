@@ -7,10 +7,12 @@
 - Có thể dùng các phép toán cơ bản bình thường
 - Cách khai báo:
     + C1: Thêm hậu số (n) vào cuối giá trị
-    + C2: Dùng hãm BigInt(xxxxxx).
+    + C2: Dùng hàm BigInt(xxxxxx).
 
 - khác nhau cơ bản của BigInt & number:
-    + 
+    + Giá trị BigInt lớn hơn
+    + BigInt không dùng được dấu chấm động
+
 
 
 
@@ -30,7 +32,7 @@
 
 
 //---------------R&D (Destructuring & Reference)-----------------
-
+- Khi obj khai báo lồng obj thì sẽ giữ Refercence sẽ thay đổi cả obj cha, gây lỗi lớn. Còn khi tương tác với kiểu giá trị nguyên thuỷ không ảnh hưởng
 
 
 
@@ -38,7 +40,7 @@
 
 
 //---------------Pass by value & Pass by reference---------------
-
+liên quan đến R&D các obj thì dữ liệu được truyền sẽ tham chiếu đến địa chỉ vùng nhớ và thay đổi được gia trị còn kiểu nguyên thuỷ thì sẽ tự tạo bản sao dữ liệu không gây ảnh hưởng
 
 
 

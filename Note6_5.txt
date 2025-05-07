@@ -1,0 +1,62 @@
+//--------------BigInt?-----------
+
+- Là 1 kiểu dữ liệu giới thiệu từ phiên bản ES11 (ECMAScript 2020).
+- Không có giới hạn kích thước như kiểu number
+- Không thể chưa số thập phân (x,xxx)
+- Không thể kết hợp với kiểu dữ liệu (number) trong tất cả phép toán
+- Có thể dùng các phép toán cơ bản bình thường
+- Cách khai báo:
+    + C1: Thêm hậu số (n) vào cuối giá trị
+    + C2: Dùng hãm BigInt(xxxxxx).
+
+- khác nhau cơ bản của BigInt & number:
+    + 
+
+
+
+
+
+
+
+
+
+//---------------IEEE754----------
+
+
+
+
+
+
+
+
+//---------------R&D (Destructuring & Reference)-----------------
+
+
+
+
+
+
+
+//---------------Pass by value & Pass by reference---------------
+
+
+
+
+
+
+
+//---------------Prototype--------------
+
+
+
+
+
+
+
+
+
+
+
+
+Solid: dùng tên hàm đúng chức năng, get set ,... -> return.
+return gì thì tạo trong không tạo ngoài toàn cục

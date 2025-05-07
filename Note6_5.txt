@@ -60,3 +60,7 @@
 
 Solid: dùng tên hàm đúng chức năng, get set ,... -> return.
 return gì thì tạo trong không tạo ngoài toàn cục
+
+lấy dữ liệu tù cmd trong nodejs bằng readline, hàm call back return kiểu dữ liệu luôn là chuỗi
+
+hàm reduce để tích luỹ giá trị, tính tổng nhanh, hậu tố cuối là giá trị sẽ start

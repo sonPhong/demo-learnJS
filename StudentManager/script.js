@@ -1,4 +1,5 @@
-// tạo và sử dụng readline cmd
+// ---------------------------------------Tạo hàm xử lý json - readline---------------------------------------
+// -----------Tạo và sử dụng readline cmd-----------
 const readline = require("readline"); // Import thư viện readline
 
 // Tạo giao diện để nhận input từ người dùng
@@ -7,6 +8,30 @@ const rl = readline.createInterface({
     output: process.stdout // write
 });
 
+// -----------Hàm xử lý json-----------
+const fs = require("fs");
+const FILE_PATH = "listSV.json";
+
+// Hàm tải dữ liệu từ tệp JSON khi khởi động
+function loadData() {
+    if (fs.existsSync(FILE_PATH)) {
+        const data = fs.readFileSync(FILE_PATH, "utf8");
+
+        // thêm điều kiện check file tồn tại - rỗng
+        if (data.trim() === "") {
+            listSV = [];
+        } else {
+            listSV = JSON.parse(data);
+        }
+    }
+}
+
+// Hàm lưu danh sách sinh viên vào tệp JSON
+function saveData() {
+    fs.writeFileSync(FILE_PATH, JSON.stringify(listSV, null, 4), "utf8");
+}
+
+// ---------------------------------------Tạo hàm xử lý yêu cầu---------------------------------------
 // Hàm tạo menu
 function showMenu() {
     console.log(`
@@ -15,12 +40,11 @@ function showMenu() {
         2. Hiện danh sách sinh viên
         3. Tìm theo tên
         4. Hiện thông tin thống kê
-        5. Tải thông tin xuống
-        6. Thoát
+        5. Thoát
         `);
 }
 
-// Hàm lấy yêu cầu người dùng - show menu - khởi tạo đầu tiên
+// Hàm lấy yêu cầu người dùng -> show menu -> khởi tạo đầu tiên
 function requestUser() {
     showMenu();
     rl.question("Nhập lựa chọn của bạn: ", function (answer) {
@@ -35,38 +59,28 @@ function requestUser() {
 function checkRequest(answer) {
     switch (answer) {
         case "1": // luôn chuỗi
-            console.log("Chọn 1");
             addSV();
             break;
         case "2":
             showListSV();
-            console.log("Chọn 2");
             break;
         case "3":
-            //searchSV();
-            console.log("Chọn 3");
-            break;
+            searchSV();
+
+            return;
         case "4":
-            //showInfo();
-            console.log("Chọn 4");
+            showInfoList();
             break;
         case "5":
-            //dowanInfo();
-            console.log("Chọn 5");
-            break;
-        case "6":
-            //exitPro();
-            console.log("Chọn 6");
-            break;
+            console.log("Thoát chương trình");
+            rl.close(); // Đóng giao diện sau khi hoàn thành
+            return;
         default:
             console.log("Chọn sai, chọn lại nhé");
-            break;
     }
     requestUser();
 
 }
-
-requestUser();
 
 let listSV = [];
 
@@ -90,15 +104,16 @@ function addSV() {
     rl.question("Nhập id, name, age, class, score của bạn (Ex: 123-phong-25...): ", function (answer) {
         const [id, name, age, className, score] = answer.split("-");
         listSV.push(new Students(id, name, age, className, score));
+        saveData();
         console.log("Đã thêm sinh viên");
         requestUser();
     });
 }
 
 // Hàm hiện list sinh viên
-function showListSV(){
+function showListSV() {
     console.log("Danh sách sinh viên");
-    listSV.forEach(function(x){
+    listSV.forEach(function (x) {
         console.log(x);
     });
 }
@@ -106,13 +121,40 @@ function showListSV(){
 // Hàm tìm sinh viên (theo tên)
 function searchSV() {
     rl.question("Nhập tên cần tìm: ", function (answer) {
-        let name = answer;
+        const name = answer;
+        const results = listSV.filter(s => s.Name.toLowerCase().includes(name.toLowerCase()));
+
+        if (results.length > 0) {
+            console.log("Kết quả tìm kiếm:");
+            console.log(results);
+            requestUser();
+        } else {
+            console.log("Không tìm thấy sinh viên có tên tương tự!");
+            requestUser();
+        }
     });
-    const results = students.filter(s => s.name.toLowerCase().includes(name.toLowerCase()));
-    if (results.length === 0) {
-        console.log("Không tìm thấy sinh viên!");
-    } else {
-        console.log("\nKết quả tìm kiếm:");
-        results.forEach(s => console.log(`${s.id} - ${s.name}, Lớp: ${s.className}, Điểm: ${s.score}`));
-    }
+
+    
 }
+
+// Hàm hiện thống kê sinh viên
+function showInfoList() {
+    console.log(`Tổng số sinh viên: ${listSV.length}`);
+
+    // Dùng hàm reduce(function(sum,s)=> sum +s.Score , 0)) 0 cuối là giá trị start cho hàm
+    const avgScore = listSV.reduce((sum, s) => sum + s.Score, 0) / listSV.length || 0;
+    console.log(`Điểm trung bình: ${avgScore.toFixed(2)}`);
+
+    // Lọc filter sinh viên đủ điều kiện vào mảng mới
+    const categories = {
+        "Xuất sắc": listSV.filter(s => s.Score >= 8).length,
+        "Tốt": listSV.filter(s => s.Score >= 6.5 && s.Score < 8).length,
+        "Trung bình": listSV.filter(s => s.Score < 6.5).length,
+    };
+    console.log(`Phân loại: Xuất sắc: ${categories["Xuất sắc"]}, Tốt: ${categories["Tốt"]}, Trung bình: ${categories["Trung bình"]}`);
+}
+
+loadData();
+
+requestUser();
+

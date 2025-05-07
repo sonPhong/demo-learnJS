@@ -20,12 +20,6 @@ function checkMiss(arr1, arr2) {
     console.log(arrCheck);
 }
 
-// test thử git
-
-/// test tiếp hehe
-
-// Done pull and create new branch
-
-// test pull orther
-
 checkMiss(arr1, arr2);
+
+// 7-5

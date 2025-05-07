@@ -1,0 +1,68 @@
+//--------------BigInt?-----------
+
+- Là 1 kiểu dữ liệu giới thiệu từ phiên bản ES11 (ECMAScript 2020).
+- Không có giới hạn kích thước như kiểu number
+- Không thể chưa số thập phân (x,xxx)
+- Không thể kết hợp với kiểu dữ liệu (number) trong tất cả phép toán
+- Có thể dùng các phép toán cơ bản bình thường
+- Cách khai báo:
+    + C1: Thêm hậu số (n) vào cuối giá trị
+    + C2: Dùng hàm BigInt(xxxxxx).
+
+- khác nhau cơ bản của BigInt & number:
+    + Giá trị BigInt lớn hơn
+    + BigInt không dùng được dấu chấm động
+
+
+
+
+
+
+
+
+
+
+//---------------IEEE754----------
+
+
+
+
+
+
+
+
+//---------------R&D (Destructuring & Reference)-----------------
+- Khi obj khai báo lồng obj thì sẽ giữ Refercence sẽ thay đổi cả obj cha, gây lỗi lớn. Còn khi tương tác với kiểu giá trị nguyên thuỷ không ảnh hưởng
+
+
+
+
+
+
+//---------------Pass by value & Pass by reference---------------
+liên quan đến R&D các obj thì dữ liệu được truyền sẽ tham chiếu đến địa chỉ vùng nhớ và thay đổi được gia trị còn kiểu nguyên thuỷ thì sẽ tự tạo bản sao dữ liệu không gây ảnh hưởng
+
+
+
+
+
+
+//---------------Prototype--------------
+
+
+
+
+
+
+
+
+
+
+
+
+Solid: dùng tên hàm đúng chức năng, get set ,... -> return.
+return gì thì tạo trong không tạo ngoài toàn cục
+
+lấy dữ liệu tù cmd trong nodejs bằng readline, hàm call back return kiểu dữ liệu luôn là chuỗi
+
+hàm reduce để tích luỹ giá trị, tính tổng nhanh, hậu tố cuối là giá trị sẽ start
